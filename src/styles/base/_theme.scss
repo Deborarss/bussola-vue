@@ -1,0 +1,51 @@
+#app{
+    overflow: hidden;
+}
+html {
+    overflow-x: hidden;
+}
+
+html, body {
+    @media screen and (max-width: 767px) {
+        overflow-x: hidden;
+    }
+    @media screen and (min-width: 768px) {
+        body {
+            overflow-x: initial;
+        }
+    }
+}
+
+
+body {
+    color: #FFF;
+    font-family: Roboto;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    margin: 0;
+}
+
+
+.menuLP--scroll{
+    position: fixed;
+    width: 100%;
+}
+
+.hide-desktop{
+    @media screen and (max-width: 767px){
+        display: none;
+    }
+}
+
+.hide-mobile{
+    @media screen and (min-width: 767px){
+        display: none;
+    }
+}
+
+.only-lg {
+    display: none;
+    @media screen and (min-width: 992px){
+        display: initial;
+    }
+}
