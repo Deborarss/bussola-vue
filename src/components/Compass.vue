@@ -1,12 +1,12 @@
 <template>
   <div class="compass">
     <div class="compass__content compass__container">
-      <a class="compass__content__link only-desktop">
-        <p @click="switchModalOn()">Qual a sua localização?</p>
+      <a class="compass__content__link">
+        <p @click="switchModalOn()">{{ local }}</p>
         <img src="../assets/images/icons/icon_location.svg" alt="">
       </a>
         <div class="compass__model__input">
-          <span class="icon-close">
+          <span class="icon-close" @click="compassOff()">
             <img src="../assets/images/icons/close.svg" alt="Ícone Fechar">
           </span>
           <form>
@@ -35,11 +35,15 @@ export default {
       modal: false,
       estados: cities.estados,
       cidades: [],
-      filteredCities: []
+      filteredCities: [],
+      local: 'Qual a sua localização?'
     }
   },
   created(){
     this.getCities();
+    const city = localStorage.getItem('cidade')
+    this.local = city
+    this.search = city
   },
   methods: {
     getCities() {
@@ -64,7 +68,11 @@ export default {
     switchModalOn() {
       $('.compass__content__link').hide()
       $('.compass__model__input').show()
-      $("#autocomplete_input").focus()
+      $('#autocomplete_input').focus()
+    },
+    compassOff() {
+      $('.compass__content__link').show()
+      $('.compass__model__input').hide()
     }
     
   }
@@ -95,7 +103,8 @@ export default {
       padding: 0;
       width: 100%;
       margin-top: -3px;
-      border-top: 0px !important;
+      border-top: 0px;
+      border-bottom: 0px;
     }
 
     &__city {
